@@ -1,25 +1,33 @@
 import kivy
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-
-import random
+from kivy.uix.stacklayout import StackLayout
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.button import Button
 
 kivy.require("2.3.0")
 
 
-class MyRoot(BoxLayout):
-    def __init__(self):
-        super(MyRoot, self).__init__()
+class Products(StackLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
-    def generate_number(self):
-        self.random_label.text = str(random.randint(0, 2000))
+        for i in range(1,26):
+            self.add_widget(
+                Button(text=f"{1}", size_hint=(.2,.2))
+            )
+
+class Menu(BoxLayout): 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.orientation = "vertical"
+        self.add_widget(Products())
 
 
-
-class RandomNumber(App):
+class ShopPalApp(App):
     def build(self) -> None:
-        return MyRoot()
+        return Menu()
     
     
-randomApp = RandomNumber()
-randomApp.run()
+shopPal = ShopPalApp()
+shopPal.run()
