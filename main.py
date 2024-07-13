@@ -19,7 +19,6 @@ class ProductButton(BoxLayout):
         self.add_widget(Label(text="info"))
         self.add_widget(Button(text="Add to cart"))
 
-
 class Products(StackLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -31,10 +30,9 @@ class Products(StackLayout):
 
         for i in range(1, 26):
             self.add_widget(ProductButton())
-        
-        self.add_widget(Button(text="Add more products"))
 
-        
+        self.add_widget(Button(text="Add more products", size_hint=(None, None), size=(150, 150)))
+
 class Menu(BoxLayout): 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
