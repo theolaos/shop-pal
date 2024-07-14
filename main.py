@@ -1,27 +1,25 @@
 import kivy
+import os
 
 from kivy.uix.screenmanager import ScreenManager, SlideTransition
 from kivy.app import App
+from kivy.lang import Builder
 
 from home import HomeScreen
 from cart import CartScreen
 from setting import SettingsScreen
 from product import ProductScreen
 
+Builder.load_file(os.path.join("kv", "home.kv"))
+Builder.load_file(os.path.join("kv", "product.kv"))
+
 kivy.require("2.3.0")
 
 class ShopPalApp(App):
     def build(self):
-        screen_manager = ScreenManager()
-
-        screen_manager.add_widget(HomeScreen(name='home'))
-        screen_manager.add_widget(CartScreen(name='cart'))
-        screen_manager.add_widget(SettingsScreen(name='settings'))
-        screen_manager.add_widget(ProductScreen(name='product'))
-
-        return screen_manager
+        return Builder.load_file('main.kv')
     
-    def switch_screen_slide(self, screen_name, dir, dur):
+    def switch_screen_slide(self, screen_name, dir, dur=.5):
         sm = self.root
         def switch(*args):
             self.manager.transition = SlideTransition(
@@ -29,7 +27,10 @@ class ShopPalApp(App):
                 duration=dur
             )
             sm.current = screen_name
+        print("sliding", dir)
+
         return switch
+    
 
 
 if __name__ == '__main__':

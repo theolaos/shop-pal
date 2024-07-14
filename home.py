@@ -108,7 +108,7 @@ class Home(BoxLayout):
         return switch
 
 
-class HomeScreen(Screen):
+class HomeScreen(Screen): 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(Home())
+    #     self.add_widget(Home())

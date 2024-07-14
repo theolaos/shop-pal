@@ -1,0 +1,22 @@
+<HomeScreen>:
+    orientation: "vertical"
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint: 1, .1
+        pos_hint: {'top': 1}
+
+        Button:
+            text: "Settings"
+            on_press: app.switch_screen_slide('settings', 'right')
+
+        Label:
+            text: "ShopPal"
+
+        Button:
+            text: "Cart"
+            on_press: app.switch_screen_slide('cart', 'left')
+
+    ScrollView:
+        size_hint: 1, .9
+        Products:
