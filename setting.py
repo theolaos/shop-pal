@@ -3,6 +3,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 
+from utils import switch_screen
+
 
 class SettingsScreen(Screen):
     def __init__(self, **kwargs):
@@ -12,7 +14,7 @@ class SettingsScreen(Screen):
         layout.add_widget(
             Button(
                 text="Back to Home", 
-                on_press=self.switch_screen(
+                on_press=switch_screen(self,
                     'home', 
                     transition=SlideTransition(
                         direction="left", 
@@ -22,9 +24,3 @@ class SettingsScreen(Screen):
             )
         )
         self.add_widget(layout)
-
-    def switch_screen(self, screen_name, transition):
-        def switch(*args):
-            self.manager.transition = transition
-            self.manager.current = screen_name
-        return switch

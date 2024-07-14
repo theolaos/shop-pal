@@ -5,8 +5,10 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.core.window import Window
-from kivy.uix.screenmanager import Screen, SlideTransition
+from kivy.uix.screenmanager import Screen, SlideTransition, SwapTransition
 from kivy.metrics import dp
+
+from utils import switch_screen_root
 
 
 class ProductButton(BoxLayout):
@@ -16,9 +18,21 @@ class ProductButton(BoxLayout):
         self.size_hint_y = None
         self.height = height
 
-        self.add_widget(Button(text="img",size_hint=(1,3)))
+        self.add_widget(Button(
+            text="img",
+            size_hint=(1,3),
+            on_press=switch_screen_root( 
+                    'product',
+                    SlideTransition(
+                        direction="up",
+                        duration=.5
+                    )
+                )
+            )
+        )
         self.add_widget(Label(text="info",size_hint=(1,1.25)))
         self.add_widget(Button(text="Add to cart"))
+
 
 class Products(GridLayout):
     def __init__(self, **kwargs):
@@ -39,11 +53,13 @@ class Products(GridLayout):
         Window.bind(on_resize=self.update_columns_width)
         self.update_columns_width(Window, Window.width, Window.height)
 
+
     def update_columns_width(self, instance, width, height):
         # Calculate the number of columns based on the window width
         product_width = self.w + self.spacing[0]  # Product width + horizontal spacing
         cols = max(1, int(width / product_width))
         self.cols = cols
+
 
 class Home(BoxLayout): 
     def __init__(self, **kwargs):
@@ -83,12 +99,14 @@ class Home(BoxLayout):
         scroll_view.add_widget(products)
         self.add_widget(scroll_view)
     
+
     def switch_screen(self, screen_name, transition):
         def switch(*args):
             app = App.get_running_app()
             app.root.transition = transition
             app.root.current = screen_name
         return switch
+
 
 class HomeScreen(Screen):
     def __init__(self, **kwargs):

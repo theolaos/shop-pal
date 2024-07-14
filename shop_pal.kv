@@ -1,0 +1,30 @@
+#:kivy
+
+ScreenManager:
+    HomeScreen:
+        "home"
+    CartScreen:
+        "cart"
+    SettingsScreen:
+        "settings"
+    ProductScreen:
+        "product"
+
+<HomeScreen>
+    orientation: "vertical"
+    size_hint: 1, 0.1
+
+    Button:
+        text: "Settings"
+        on_press: app.switch_screens_slide('settings', 'right')
+    
+    Label:
+        text: "ShopPal"
+
+    Button:
+        text: "Cart"
+        on_press: app.switch_screens_slide('cart', 'left')
+
+    ScrollView
+
+    

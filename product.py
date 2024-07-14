@@ -6,18 +6,18 @@ from kivy.uix.label import Label
 from utils import switch_screen
 
 
-class CartScreen(Screen):
+class ProductScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         layout = BoxLayout(orientation='vertical')
-        layout.add_widget(Label(text="Cart Page"))
+        layout.add_widget(Label(text="Product Page"))
         layout.add_widget(
             Button(
                 text="Back to Home", 
                 on_press=switch_screen(self,
                     'home', 
-                    SlideTransition(
-                        direction="right",
+                    transition=SlideTransition( 
+                        direction="down",
                         duration=.5
                     )
                 )
