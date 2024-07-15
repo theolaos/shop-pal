@@ -14,24 +14,7 @@ from utils import switch_screen_root
 class ProductButton(BoxLayout):
     def __init__(self, height=dp(100), **kwargs):
         super().__init__(**kwargs)
-        self.orientation = "vertical"
-        self.size_hint_y = None
-        self.height = height
-
-        self.add_widget(Button(
-            text="img",
-            size_hint=(1,3),
-            on_press=switch_screen_root( 
-                    'product',
-                    SlideTransition(
-                        direction="up",
-                        duration=.5
-                    )
-                )
-            )
-        )
-        self.add_widget(Label(text="info",size_hint=(1,1.25)))
-        self.add_widget(Button(text="Add to cart"))
+        self.height = height # styling stuff
 
 
 class Products(GridLayout):
