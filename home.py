@@ -30,7 +30,7 @@ class Products(GridLayout):
             self.add_widget(ProductButton(size_hint_y=None, height=self.h))
 
         # Add the "Add more products" button
-        self.add_widget(Button(text="Add more products", size_hint_y=1, height=self.h))
+        self.add_widget(Button(text="Add more\n products", size_hint_y=1, height=self.h))
 
         # Bind the size change to adjust columns dynamically
         Window.bind(on_resize=self.update_columns_width)

@@ -13,3 +13,6 @@ def switch_screen_root(screen_name, transition):
         app.root.transition = transition
         app.root.current = screen_name
     return switch
+
+class Cart:
+    ITEMS = []

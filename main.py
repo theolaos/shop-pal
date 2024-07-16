@@ -1,7 +1,7 @@
 import kivy
 import os
 
-from kivy.uix.screenmanager import ScreenManager, SlideTransition
+from kivy.uix.screenmanager import SlideTransition
 from kivy.app import App
 from kivy.lang import Builder
 
@@ -13,6 +13,7 @@ from product import ProductScreen
 Builder.load_file(os.path.join("kv", "home.kv"))
 Builder.load_file(os.path.join("kv", "product.kv"))
 Builder.load_file(os.path.join("kv", "cart.kv"))
+Builder.load_file(os.path.join("kv", "setting.kv"))
 
 
 kivy.require("2.3.0")
