@@ -6,16 +6,27 @@
         size_hint: 1, .1
         pos_hint: {'top': 1}
 
-        Button:
-            text: "Settings"
+        MDButton:
+            halign: "center"
             on_press: app.switch_screen_slide('settings', 'right')
+            
+            MDButtonIcon:
+                halign: "center"
+                icon: "plus"
 
-        Label:
+        MDLabel:
+            halign: "center"
+            role: "large"
             text: "ShopPal"
+            color: 1, 1, 1
 
-        Button:
-            text: "Cart"
+        MDButton:
+            halign: "center"
             on_press: app.switch_screen_slide('cart', 'left')
+
+            MDButtonIcon:
+                icon: "cart"
+
 
     ScrollView:
         size_hint: 1, .9

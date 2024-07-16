@@ -1,24 +1,26 @@
-import kivy
-import os
+from os.path import join as join_path
+from kivy import require as kivy_require
+
+import kivymd
 
 from kivy.uix.screenmanager import SlideTransition
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.lang import Builder
 
-from home import HomeScreen
-from cart import CartScreen
-from setting import SettingsScreen
-from product import ProductScreen
+from src.home import HomeScreen
+from src.cart import CartScreen
+from src.setting import SettingsScreen
+from src.product import ProductScreen
 
-Builder.load_file(os.path.join("kv", "home.kv"))
-Builder.load_file(os.path.join("kv", "product.kv"))
-Builder.load_file(os.path.join("kv", "cart.kv"))
-Builder.load_file(os.path.join("kv", "setting.kv"))
+Builder.load_file(join_path("src", "kv", "home.kv"))
+Builder.load_file(join_path("src", "kv", "product.kv"))
+Builder.load_file(join_path("src", "kv", "cart.kv"))
+Builder.load_file(join_path("src", "kv", "setting.kv"))
 
 
-kivy.require("2.3.0")
+kivy_require("2.3.0")
 
-class ShopPalApp(App):
+class ShopPalApp(MDApp):
     def build(self):
         return Builder.load_file('main.kv')
     
@@ -29,8 +31,6 @@ class ShopPalApp(App):
             duration=dur
         )
         sm.current = screen_name
-        print("sliding", dir)
-    
 
 
 if __name__ == '__main__':

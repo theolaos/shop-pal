@@ -8,7 +8,7 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, SlideTransition, SwapTransition
 from kivy.metrics import dp
 
-from utils import switch_screen_root
+from src.utils import switch_screen_root
 
 
 class ProductButton(BoxLayout):
