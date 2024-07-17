@@ -4,13 +4,14 @@
     BoxLayout:
         orientation: 'vertical'
         MDLabel:
+            halign: "center"
+            color: 1, 1, 1
             text: 'Settings Page'
-            
 
-        MDButton:
+
+        MDTextButton:
             style: "tonal"
             style: "outlined"
 
             on_press: app.switch_screen_slide("home", "left")
-            MDButtonText:
-                text: 'Back to Home'
+            text: 'Back to Home'

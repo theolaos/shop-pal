@@ -1,7 +1,7 @@
 from os.path import join as join_path
 from kivy import require as kivy_require
 
-import kivymd
+# import kivymd
 
 from kivy.uix.screenmanager import SlideTransition
 from kivymd.app import MDApp

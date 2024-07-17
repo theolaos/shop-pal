@@ -1,32 +1,43 @@
 <HomeScreen>:
     orientation: "vertical"
 
-    BoxLayout:
+    MDBoxLayout:
         orientation: "horizontal"
         size_hint: 1, .1
         pos_hint: {'top': 1}
+    
 
-        MDButton:
-            halign: "center"
-            on_press: app.switch_screen_slide('settings', 'right')
-            
-            MDButtonIcon:
-                halign: "center"
-                icon: "plus"
+    MDTopAppBar:
+        size_hint: 1, .1
+        pos_hint: {'top': 1}
+        type_height: "small"
+        title: "ShopPal"
+        anchor_title: "center"
+        left_action_items: [["arrow-left", lambda x: app.switch_screen_slide('settings', 'right')]]
+        right_action_items: [["cart", lambda x: app.switch_screen_slide('cart', 'left')]]
 
-        MDLabel:
-            halign: "center"
-            role: "large"
-            text: "ShopPal"
-            color: 1, 1, 1
+        # MDTopAppBar:
+        #     type: "small"
+        #     size_hint_x: .9
+        #     pos_hint: {"center_x": .5, "center_y": .5}
 
-        MDButton:
-            halign: "center"
-            on_press: app.switch_screen_slide('cart', 'left')
+        #     MDTopAppBarLeadingButtonContainer:
 
-            MDButtonIcon:
-                icon: "cart"
+        #         MDActionTopAppBarButton:
+        #             icon: "menu"
+        #             on_press: app.switch_screen_slide('settings', 'right')
 
+        #     MDTopAppBarTitle:
+        #         text: "ShopPal"
+        #         pos_hint: {"center_x": .5}
+
+        #     MDTopAppBarTrailingButtonContainer:
+
+        #         BoxLayout:
+        #             # pos_hint: {"center_x": self.minimum_width}
+        #             MDActionTopAppBarButton:
+        #                 icon: "cart"
+        #                 on_press: app.switch_screen_slide('cart', 'left')
 
     ScrollView:
         size_hint: 1, .9
@@ -46,6 +57,7 @@
             on_press: app.switch_screen_slide('product', 'up')
         
         Label:
+            color: 0, 0, 0
             size_hint: 1, 1.25
             text: "info"
 
