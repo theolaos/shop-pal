@@ -8,17 +8,37 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, SlideTransition, SwapTransition
 from kivy.metrics import dp
 from kivymd.uix.imagelist import MDSmartTile
+from kivymd.uix.card import MDCard
+from kivymd.uix.recyclegridlayout import RecycleGridLayout
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleview.views import RecycleDataViewBehavior
 
-from src.utils import switch_screen_root
 
 
-class ProductButton(MDSmartTile):
+class ProductButton(MDCard):
     def __init__(self, height=dp(100), **kwargs):
         super().__init__(**kwargs)
         self.height = height # styling stuff
 
 
-class Products(GridLayout):
+class ProductView(RecycleDataViewBehavior, GridLayout):
+    def refresh_view_attrs(self, rv, index, data):
+        """ Catch and handle the view changes """
+        self.ids.product_image.source = data['source']
+        self.ids.product_name.text = data['name']
+        return super(ProductView, self).refresh_view_attrs(rv, index, data)
+
+
+class ProductRecycleView(RecycleView):
+    def __init__(self, **kwargs):
+        super(ProductRecycleView, self).__init__(**kwargs)
+        self.data = [
+            {'source': f'path_to_image_{i}.jpg', 'name': f'Product {i}'}
+            for i in range(100)
+        ]
+
+
+class Products(RecycleGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.spacing = [10, 10]  # Horizontal and vertical spacing
@@ -29,9 +49,6 @@ class Products(GridLayout):
 
         for i in range(1, 26):
             self.add_widget(ProductButton(size_hint_y=None, height=self.h))
-
-        # Add the "Add more products" button
-        self.add_widget(Button(text="Add more\n products", size_hint_y=1, height=self.h))
 
         # Bind the size change to adjust columns dynamically
         Window.bind(on_resize=self.update_columns_width)

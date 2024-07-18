@@ -16,6 +16,7 @@
     MDTopAppBar:
         id: appbar
         type: "small"
+        size_hint: 1, .08
         pos_hint: {"top": 1}
 
         MDTopAppBarLeadingButtonContainer:
@@ -36,38 +37,60 @@
             MDActionTopAppBarButton:
                 icon: "cart"
                 on_press: app.switch_screen_slide("cart", "left")
+    
+    RecycleView:
+        id: rv
+        viewclass: "ProductView"
+        RecycleGridLayout:
+            cols: 2
+            default_size: None, dp(120)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: dp(10)
+            padding: dp(10)
 
-    ScrollView:
-        size_hint: 1, .9
-        Products:
+<ProductView@MDCard>:
+    size_hint: 1, None
+    height: dp(150)
+    padding: "8dp"
+    on_press: app.switch_screen_slide("product", "up")
+
+    FitImage:
+        id: product_img
+        source: ''
+        radius: [20,]
+
+    MDLabel:
+        id: product_name
+        text: ''
+        halign: 'center'
+        valign: 'middle'
+        size_hint_y: None
+        height: self.texture_size[1] + dp(10)
+        pos_hint: {'center_x': 0.5}
 
 
 <ProductButton>:
-    size_hint: None, None
-    size: "320dp", "320dp"
-    overlap: False
-    MDSmartTileImage:
-        source: "assets/banana.png"
-        radius: [dp(24), dp(24), 0, 0]
-        
-    MDSmartTileOverlayContainer:
-        md_bg_color: 0, 0, 0, .5
-        adaptive_height: True
-        padding: "8dp"
-        spacing: "8dp"
-        radius: [0, 0, dp(24), dp(24)]
+    padding: "4dp"
+    on_press: app.switch_screen_slide("product", "up")
+
+    MDRelativeLayout:
+
         MDIconButton:
-            icon: "heart-outline"
-            theme_icon_color: "Custom"
-            icon_color: 1, 0, 0, 1
-            pos_hint: {"center_y": .5}
-            on_release:
-                self.icon = "heart" \
-                if self.icon == "heart-outline" else \
-                "heart-outline"
+            icon: "dots-vertical"
+            pos_hint: {"top": 1, "right": 1}
+
+        FitImage:
+            source: "assets/banana.png"
+            pos_hint: {"top": 1}
+            radius: "20dp", "20dp", "20dp", "20dp"
+            size_hint: 1, 0.7
+
         MDLabel:
-            text: "Banana"
-            theme_text_color: "Custom"
-            text_color: "white"
-# <Products>:
+            text: "banana"
+            adaptive_size: True
+            color: "grey"
+            pos_hint: {"bottom": 0.1, "left": 0.1}
+            bold: True
 
