@@ -7,11 +7,12 @@ from kivy.uix.label import Label
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, SlideTransition, SwapTransition
 from kivy.metrics import dp
+from kivymd.uix.imagelist import MDSmartTile
 
 from src.utils import switch_screen_root
 
 
-class ProductButton(BoxLayout):
+class ProductButton(MDSmartTile):
     def __init__(self, height=dp(100), **kwargs):
         super().__init__(**kwargs)
         self.height = height # styling stuff

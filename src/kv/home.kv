@@ -1,43 +1,41 @@
 <HomeScreen>:
-    orientation: "vertical"
+    orientation: "vertical"  
 
-    MDBoxLayout:
-        orientation: "horizontal"
-        size_hint: 1, .1
-        pos_hint: {'top': 1}
-    
+    # MDTopAppBar:
+    #     size_hint: 1, .1
+    #     pos_hint: {'top': 1}
+    #     type_height: "small"
+    #     title: "ShopPal"
+    #     anchor_title: "center"
+    #     left_action_items: [["arrow-left", lambda x: app.switch_screen_slide('settings', 'right')]]
+    #     right_action_items: [["cart", lambda x: app.switch_screen_slide('cart', 'left')]]
+
+
+
 
     MDTopAppBar:
-        size_hint: 1, .1
-        pos_hint: {'top': 1}
-        type_height: "small"
-        title: "ShopPal"
-        anchor_title: "center"
-        left_action_items: [["arrow-left", lambda x: app.switch_screen_slide('settings', 'right')]]
-        right_action_items: [["cart", lambda x: app.switch_screen_slide('cart', 'left')]]
+        id: appbar
+        type: "small"
+        pos_hint: {"top": 1}
 
-        # MDTopAppBar:
-        #     type: "small"
-        #     size_hint_x: .9
-        #     pos_hint: {"center_x": .5, "center_y": .5}
+        MDTopAppBarLeadingButtonContainer:
 
-        #     MDTopAppBarLeadingButtonContainer:
+            MDActionTopAppBarButton:
+                icon: "menu"
+                on_press: app.switch_screen_slide("settings", "right")
 
-        #         MDActionTopAppBarButton:
-        #             icon: "menu"
-        #             on_press: app.switch_screen_slide('settings', 'right')
+        MDTopAppBarTitle:
+            text: "ShopPal"
 
-        #     MDTopAppBarTitle:
-        #         text: "ShopPal"
-        #         pos_hint: {"center_x": .5}
+        MDTopAppBarTrailingButtonContainer:
 
-        #     MDTopAppBarTrailingButtonContainer:
+            MDActionTopAppBarButton:
+                icon: "plus"
+                # on_press: app.switch_screen_slide("productedit", "up")
 
-        #         BoxLayout:
-        #             # pos_hint: {"center_x": self.minimum_width}
-        #             MDActionTopAppBarButton:
-        #                 icon: "cart"
-        #                 on_press: app.switch_screen_slide('cart', 'left')
+            MDActionTopAppBarButton:
+                icon: "cart"
+                on_press: app.switch_screen_slide("cart", "left")
 
     ScrollView:
         size_hint: 1, .9
@@ -45,24 +43,31 @@
 
 
 <ProductButton>:
-    BoxLayout:
-        orientation: "vertical"
-        size_hint_y: 1
-
-        # height is init in the python class.
-
-        Button:
-            size_hint: 1, 3
-            text: "img"
-            on_press: app.switch_screen_slide('product', 'up')
+    size_hint: None, None
+    size: "320dp", "320dp"
+    overlap: False
+    MDSmartTileImage:
+        source: "assets/banana.png"
+        radius: [dp(24), dp(24), 0, 0]
         
-        Label:
-            color: 0, 0, 0
-            size_hint: 1, 1.25
-            text: "info"
-
-        Button:
-            text: "Add to cart"
-
+    MDSmartTileOverlayContainer:
+        md_bg_color: 0, 0, 0, .5
+        adaptive_height: True
+        padding: "8dp"
+        spacing: "8dp"
+        radius: [0, 0, dp(24), dp(24)]
+        MDIconButton:
+            icon: "heart-outline"
+            theme_icon_color: "Custom"
+            icon_color: 1, 0, 0, 1
+            pos_hint: {"center_y": .5}
+            on_release:
+                self.icon = "heart" \
+                if self.icon == "heart-outline" else \
+                "heart-outline"
+        MDLabel:
+            text: "Banana"
+            theme_text_color: "Custom"
+            text_color: "white"
 # <Products>:
 
