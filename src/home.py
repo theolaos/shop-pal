@@ -24,4 +24,3 @@ class ProductRecycleView(RecycleView):
 class HomeScreen(Screen): 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # ProductRecycleView()
