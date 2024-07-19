@@ -1,3 +1,3 @@
 # ShopPal
 
-A local database driven shopping app.
+A database driven shopping pal.
