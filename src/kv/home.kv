@@ -1,77 +1,51 @@
 <HomeScreen>:
-    orientation: "vertical"  
+    MDBoxLayout:
+        orientation: 'vertical'
 
-    # MDTopAppBar:
-    #     size_hint: 1, .1
-    #     pos_hint: {'top': 1}
-    #     type_height: "small"
-    #     title: "ShopPal"
-    #     anchor_title: "center"
-    #     left_action_items: [["arrow-left", lambda x: app.switch_screen_slide('settings', 'right')]]
-    #     right_action_items: [["cart", lambda x: app.switch_screen_slide('cart', 'left')]]
+        MDTopAppBar:
+            id: appbar
+            type: "small"
+            size_hint: 1, .08
+            pos_hint: {"top": 1}
 
+            MDTopAppBarLeadingButtonContainer:
 
+                MDActionTopAppBarButton:
+                    icon: "menu"
+                    on_press: app.switch_screen_slide("settings", "right")
 
+            MDTopAppBarTitle:
+                text: "ShopPal"
 
-    MDTopAppBar:
-        id: appbar
-        type: "small"
-        size_hint: 1, .08
-        pos_hint: {"top": 1}
+            MDTopAppBarTrailingButtonContainer:
 
-        MDTopAppBarLeadingButtonContainer:
+                MDActionTopAppBarButton:
+                    icon: "plus"
+                    # on_press: app.switch_screen_slide("productedit", "up")
 
-            MDActionTopAppBarButton:
-                icon: "menu"
-                on_press: app.switch_screen_slide("settings", "right")
-
-        MDTopAppBarTitle:
-            text: "ShopPal"
-
-        MDTopAppBarTrailingButtonContainer:
-
-            MDActionTopAppBarButton:
-                icon: "plus"
-                # on_press: app.switch_screen_slide("productedit", "up")
-
-            MDActionTopAppBarButton:
-                icon: "cart"
-                on_press: app.switch_screen_slide("cart", "left")
+                MDActionTopAppBarButton:
+                    icon: "cart"
+                    on_press: app.switch_screen_slide("cart", "left")
     
-    RecycleView:
-        id: rv
-        viewclass: "ProductView"
-        RecycleGridLayout:
-            cols: 2
-            default_size: None, dp(120)
-            default_size_hint: 1, None
-            size_hint_y: None
-            height: self.minimum_height
-            spacing: dp(10)
-            padding: dp(10)
 
-<ProductView@MDCard>:
-    size_hint: 1, None
-    height: dp(150)
-    padding: "8dp"
-    on_press: app.switch_screen_slide("product", "up")
+        ProductRecycleView:
+            size_hint: 1, .92 
 
-    FitImage:
-        id: product_img
-        source: ''
-        radius: [20,]
-
-    MDLabel:
-        id: product_name
-        text: ''
-        halign: 'center'
-        valign: 'middle'
+<ProductRecycleView>:
+    id: prv
+    viewclass: 'ProductButton'
+    RecycleGridLayout:
+        cols: 2
+        default_size: None, dp(120)
+        default_size_hint: 1, None
         size_hint_y: None
-        height: self.texture_size[1] + dp(10)
-        pos_hint: {'center_x': 0.5}
+        height: self.minimum_height
+        spacing: dp(10)
+        padding: dp(10)
+        
 
 
-<ProductButton>:
+<ProductButton@MDCard>:
     padding: "4dp"
     on_press: app.switch_screen_slide("product", "up")
 
@@ -82,13 +56,15 @@
             pos_hint: {"top": 1, "right": 1}
 
         FitImage:
-            source: "assets/banana.png"
+            id: product_img
+            source: product_img.source
             pos_hint: {"top": 1}
-            radius: "20dp", "20dp", "20dp", "20dp"
+            radius: "14dp", "14dp", "14dp", "14dp"
             size_hint: 1, 0.7
 
         MDLabel:
-            text: "banana"
+            id: product_name
+            text: product_name.text
             adaptive_size: True
             color: "grey"
             pos_hint: {"bottom": 0.1, "left": 0.1}

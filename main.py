@@ -17,13 +17,16 @@ Builder.load_file(join_path("src", "kv", "product.kv"))
 Builder.load_file(join_path("src", "kv", "cart.kv"))
 Builder.load_file(join_path("src", "kv", "setting.kv"))
 
-
 kivy_require("2.3.0")
 
 class ShopPalApp(MDApp):
     def build(self):
         return Builder.load_file('main.kv')
     
+    def on_start(self):
+        data = [{'source': "assets/banana.png",'text': f'Card {i}'} for i in range(200)]
+        self.root.children[0].data = data
+
     def switch_screen_slide(self, screen_name, dir, dur=.5):
         sm = self.root
         sm.transition = SlideTransition(
